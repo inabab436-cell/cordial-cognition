@@ -20,6 +20,7 @@ import { Route as OffersRouteImport } from './routes/offers'
 import { Route as OrdersRouteImport } from './routes/orders'
 import { Route as ProductsRouteImport } from './routes/products'
 import { Route as ShippingRouteImport } from './routes/shipping'
+import { Route as WelcomeRouteImport } from './routes/welcome'
 import { Route as ApiChatAiRouteImport } from './routes/api/chat-ai'
 import { Route as ApiVisitorRouteImport } from './routes/api/visitor'
 import { Route as AuthCallbackRouteImport } from './routes/auth.callback'
@@ -85,6 +86,11 @@ const ShippingRoute = ShippingRouteImport.update({
   path: '/shipping',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WelcomeRoute = WelcomeRouteImport.update({
+  id: '/welcome',
+  path: '/welcome',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiChatAiRoute = ApiChatAiRouteImport.update({
   id: '/api/chat-ai',
   path: '/api/chat-ai',
@@ -143,6 +149,7 @@ export interface FileRoutesByFullPath {
   '/orders': typeof OrdersRoute
   '/products': typeof ProductsRoute
   '/shipping': typeof ShippingRoute
+  '/welcome': typeof WelcomeRoute
   '/api/chat-ai': typeof ApiChatAiRoute
   '/api/visitor': typeof ApiVisitorRoute
   '/auth/callback': typeof AuthCallbackRoute
@@ -165,6 +172,7 @@ export interface FileRoutesByTo {
   '/orders': typeof OrdersRoute
   '/products': typeof ProductsRoute
   '/shipping': typeof ShippingRoute
+  '/welcome': typeof WelcomeRoute
   '/api/chat-ai': typeof ApiChatAiRoute
   '/api/visitor': typeof ApiVisitorRoute
   '/auth/callback': typeof AuthCallbackRoute
@@ -187,6 +195,7 @@ export interface FileRoutesById {
   '/orders': typeof OrdersRoute
   '/products': typeof ProductsRoute
   '/shipping': typeof ShippingRoute
+  '/welcome': typeof WelcomeRoute
   '/api/chat-ai': typeof ApiChatAiRoute
   '/api/visitor': typeof ApiVisitorRoute
   '/auth/callback': typeof AuthCallbackRoute
@@ -211,6 +220,7 @@ export interface FileRouteTypes {
     | '/orders'
     | '/products'
     | '/shipping'
+    | '/welcome'
     | '/api/chat-ai'
     | '/api/visitor'
     | '/auth/callback'
@@ -233,6 +243,7 @@ export interface FileRouteTypes {
     | '/orders'
     | '/products'
     | '/shipping'
+    | '/welcome'
     | '/api/chat-ai'
     | '/api/visitor'
     | '/auth/callback'
@@ -254,6 +265,7 @@ export interface FileRouteTypes {
     | '/orders'
     | '/products'
     | '/shipping'
+    | '/welcome'
     | '/api/chat-ai'
     | '/api/visitor'
     | '/auth/callback'
@@ -277,6 +289,7 @@ export interface RootRouteChildren {
   OrdersRoute: typeof OrdersRoute
   ProductsRoute: typeof ProductsRoute
   ShippingRoute: typeof ShippingRoute
+  WelcomeRoute: typeof WelcomeRoute
   ApiChatAiRoute: typeof ApiChatAiRoute
   ApiVisitorRoute: typeof ApiVisitorRoute
   AuthCallbackRoute: typeof AuthCallbackRoute
@@ -362,6 +375,13 @@ declare module '@tanstack/react-router' {
       path: '/shipping'
       fullPath: '/shipping'
       preLoaderRoute: typeof ShippingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/welcome': {
+      id: '/welcome'
+      path: '/welcome'
+      fullPath: '/welcome'
+      preLoaderRoute: typeof WelcomeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/chat-ai': {
@@ -456,6 +476,7 @@ const rootRouteChildren: RootRouteChildren = {
   OrdersRoute: OrdersRoute,
   ProductsRoute: ProductsRoute,
   ShippingRoute: ShippingRoute,
+  WelcomeRoute: WelcomeRoute,
   ApiChatAiRoute: ApiChatAiRoute,
   ApiVisitorRoute: ApiVisitorRoute,
   AuthCallbackRoute: AuthCallbackRoute,

@@ -1,4 +1,8 @@
+import { useEffect } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useServerFn } from "@tanstack/react-start";
+import { getSetupStatus } from "@/lib/auth.functions";
+import { ONBOARDING_DONE_KEY } from "@/lib/onboarding";
 import {
   Package, Truck, PhoneCall, ArrowLeft, CreditCard,
   ShoppingBag, BadgePercent, MessagesSquare, LayoutGrid,
@@ -42,7 +46,21 @@ const TILES: Tile[] = [
   { to: "/contacts", label: "التواصل", description: "بيانات الاتصال", icon: <PhoneCall className="h-5 w-5" />, tone: "bg-dashboard-blue-soft text-dashboard-blue" },
 ];
 
+function useOnboardingRedirect() {
+  const fetchStatus = useServerFn(getSetupStatus);
+  useEffect(() => {
+    try { if (window.localStorage.getItem(ONBOARDING_DONE_KEY)) return; } catch { return; }
+    fetchStatus()
+      .then((s) => {
+        if (s.setupCompleted) window.localStorage.setItem(ONBOARDING_DONE_KEY, "1");
+        else window.location.replace("/welcome");
+      })
+      .catch(() => {});
+  }, [fetchStatus]);
+}
+
 function DashboardPage() {
+  useOnboardingRedirect();
   const { orders, newOrders, pendingChats } = useHubBadges(true);
   const visibleTiles = TILES;
   const badgeFor = (to: string) =>
