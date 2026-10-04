@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import {
-  ArrowLeft, ArrowRight, Check, CreditCard, ImagePlus, Loader2, MessagesSquare,
+  ArrowLeft, ArrowRight, Check, CreditCard, ImagePlus, Loader2,
   Package, PartyPopper, Sparkles, Store, Truck,
 } from "lucide-react";
 
@@ -134,9 +134,8 @@ function WelcomePage() {
               <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-muted-foreground">
                 خلال دقيقتين سنجهّز متجرك معًا. كل خطوة يمكنك تعديلها لاحقًا في أي وقت.
               </p>
-              <div className="mt-8 grid gap-3 text-right sm:grid-cols-3">
+              <div className="mt-8 grid gap-3 text-right sm:grid-cols-2">
                 <Feature icon={<Store className="h-5 w-5" />} title="متجر إلكتروني" text="رابط جاهز لمشاركته مع عملائك" />
-                <Feature icon={<MessagesSquare className="h-5 w-5" />} title="مساعد ذكي" text="يرد على عملائك ويستقبل الطلبات" />
                 <Feature icon={<Package className="h-5 w-5" />} title="إدارة كاملة" text="المنتجات والطلبات والشحن بمكان واحد" />
               </div>
               <Button size="lg" className="mt-8 w-full sm:w-auto sm:px-10" onClick={() => setStep(1)}>
